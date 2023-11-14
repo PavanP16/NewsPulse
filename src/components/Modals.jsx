@@ -16,15 +16,27 @@ const Modals = ({ isOpen, onRequestClose, contractInstance ,changed}) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if(tokenAmount < 500){
+      toast.warning("Minimum amount is 500", {
+        position: "bottom-right",
+      });
+      return;
+    }
+
     if (contractInstance) {
   
       const promise = new Promise(async(resolve, reject) => {
 
         try {
-          const res = await contractInstance.receiveTokens({ value: ethers.utils.parseEther("0.001") });
+          let amountToCharge = tokenAmount * 0.000002;
+          
+          amountToCharge = ethers.utils.parseEther(amountToCharge.toString());
+          console.log(amountToCharge);
+          amountToCharge = amountToCharge.toString();
+          const res = await contractInstance.receiveTokens(tokenAmount, { value: amountToCharge });
           await res.wait();
           resolve("Tokens received successfully");
-
         } catch (error) {
           console.log(error.message);
           reject("Error in receiving tokens");

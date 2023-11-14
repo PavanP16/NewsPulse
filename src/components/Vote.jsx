@@ -6,7 +6,6 @@ const Vote = ({ contractInstance, id, blogPost, currentAccount }) => {
   const [score, setScore] = useState(0); // Initial score
   const [upvoted, setUpvoted] = useState(false);
   const [downvoted, setDownvoted] = useState(false);
-  const [change, setChange] = useState(false);
 
   const getisVoted = () => {
     if (blogPost) {
@@ -53,12 +52,14 @@ const Vote = ({ contractInstance, id, blogPost, currentAccount }) => {
   ]);
 
   const handleUpvote = async () => {
+
     if (upvoted) {
       toast.warning("Already liked the post", {
         position: "bottom-right",
       });
       return;
     }
+    
     if (currentAccount) {
       const promise = new Promise(async (resolve, reject) => {
         try {

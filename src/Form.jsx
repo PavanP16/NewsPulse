@@ -16,18 +16,24 @@ const Form = ({ contractInstance }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if(!title || !content){
-      toast.info("Please fill all the fields");
+    if (!title || !content) {
+      toast.info("Please fill all the fields", {
+        position: "bottom-right",
+      });
       return;
     }
 
     if (title.length < 5) {
-      toast.info("Title must be atleast 5 characters long");
+      toast.info("Title must be atleast 5 characters long", {
+        position: "bottom-right",
+      });
       return;
     }
 
     if (content.length < 10) {
-      toast.info("Content must be atleast 10 characters long");
+      toast.info("Content must be atleast 10 characters long", {
+        position: "bottom-right",
+      });
       return;
     }
 
