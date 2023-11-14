@@ -1,4 +1,4 @@
-const contractAddress = "0xC2B751B7a17d8AE16238c55e36fD8671d9F14BcF";
+const contractAddress = "0xC4DE57BA32F69AD936A8702B436f0E766025E7Dd";
 const contractABI = [
 	{
 		"inputs": [],
@@ -683,6 +683,6 @@ const contractABI = [
 		"stateMutability": "nonpayable",
 		"type": "function"
 	}
-];
+]
 module.exports = { contractAddress, contractABI };
 
