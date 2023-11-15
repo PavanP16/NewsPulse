@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Vote from "./components/Vote";
-import { toast } from "sonner";
 import { MessageSquare } from "lucide-react";
 
 const Post = ({ currentAccount, contractInstance, setIsVoted }) => {
@@ -37,7 +36,9 @@ const Post = ({ currentAccount, contractInstance, setIsVoted }) => {
     return formattedDate;
   }
 
-  const AllBlogs = blogs.filter((blog) => {
+  let array_rev = [...blogs].reverse()
+
+  const AllBlogs = array_rev.filter((blog) => {
     return blog.author !== '0x0000000000000000000000000000000000000000';
   });
 
