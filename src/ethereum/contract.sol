@@ -69,7 +69,7 @@ contract YourToken is ERC20Capped {
 
     function postSomething(string memory title, string memory content) public returns (bool) {
         require(
-            balanceOf(msg.sender) >= 500 * 1e18,
+            balanceOf(msg.sender) >= 100 * 1e18,
             "Insufficient tokens to post"
         );
         _transfer(msg.sender, address(this), 100 * 1e18); // Burn 500 tokens from the user
@@ -157,7 +157,7 @@ contract YourToken is ERC20Capped {
             _transfer(sender, address(this), 5 * 1e18);
 
             // Transfer 1 token from the contract (burned tokens) to the author
-            _transfer(blog.author ,address(this), 5 * 1e18);
+            _transfer(blog.author ,address(this), 2 * 1e18);
 
             // Record the dislike
             blog.dislikesCnt++;
@@ -211,7 +211,7 @@ contract YourToken is ERC20Capped {
 
     require(blogToDelete.author == msg.sender,"You cannot delete others post");
 
-    _transfer(blogToDelete.author, address(this), 50 * 1e18);
+    _transfer(blogToDelete.author, address(this), 20 * 1e18);
 
     // Create an empty space in the array at the given index
     blogs[blogIndex] = Blog({

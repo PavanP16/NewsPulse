@@ -7,7 +7,7 @@ import { toast } from "sonner";
 const Modals = ({ isOpen, onRequestClose, contractInstance ,changed}) => {
   console.log(contractInstance);
 
-  const [tokenAmount, setTokenAmount] = useState(0);
+  const [tokenAmount, setTokenAmount] = useState(null);
 
 
   const handleTokenAmountChange = (event) => {
@@ -16,6 +16,13 @@ const Modals = ({ isOpen, onRequestClose, contractInstance ,changed}) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if(tokenAmount % 500 !== 0){
+      toast.warning("Enter in multiples of 500", {
+        position: "bottom-right",
+      });
+      return;
+    }
 
     if(tokenAmount < 500){
       toast.warning("Minimum amount is 500", {
@@ -68,7 +75,7 @@ const Modals = ({ isOpen, onRequestClose, contractInstance ,changed}) => {
       overlayClassName="modal-overlay"
     >
       <div className="bg-white w-10/12 rounded-lg p-4">
-        <h2 className="text-xl font-semibold mb-4">How Many Tokens You Want(Only enter in multiples of 500)</h2>
+        <h2 className="text-xl font-semibold mb-4">How Many Tokens You Want(Enter in multiples of 500)</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">

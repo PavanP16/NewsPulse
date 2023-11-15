@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Modals from "./Modals";
 import { useDisclosure } from "@chakra-ui/react";
 import AvatarIcon from "./AvatarIcon";
 
-const Navbar = ({ currentAccount, contractInstance }) => {
+const Navbar = ({ currentAccount, contractInstance, posted, voted }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { pathname } = useLocation();
   const [changed, setChanged] = useState(false);
@@ -59,9 +59,11 @@ const Navbar = ({ currentAccount, contractInstance }) => {
 
           <p>
             <AvatarIcon
+              posted={posted}
               currentAccount={currentAccount}
               contractInstance={contractInstance}
               newchange={changed}
+              voted={voted}
             />
           </p>
         </div>

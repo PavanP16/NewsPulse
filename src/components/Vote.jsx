@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ArrowBigDown, ArrowBigUp } from "lucide-react";
 import { toast } from "sonner";
 
-const Vote = ({ contractInstance, id, blogPost, currentAccount }) => {
+const Vote = ({ contractInstance, id, blogPost, currentAccount, setIsVoted }) => {
   const [score, setScore] = useState(0); // Initial score
   const [upvoted, setUpvoted] = useState(false);
   const [downvoted, setDownvoted] = useState(false);
@@ -99,6 +99,10 @@ const Vote = ({ contractInstance, id, blogPost, currentAccount }) => {
           return `${data}`;
         },
       });
+
+      promise.then(() => {
+        setIsVoted();
+      });
     }
   };
 
@@ -147,6 +151,10 @@ const Vote = ({ contractInstance, id, blogPost, currentAccount }) => {
         error: (data) => {
           return `${data}`;
         },
+      });
+
+      promise.then(() => {
+        setIsVoted();
       });
     }
   };

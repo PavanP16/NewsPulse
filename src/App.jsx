@@ -44,6 +44,16 @@ function App() {
   }, []);
 
   console.log(contractInstance);
+  const [posted, setPosted] = useState(false);
+  const [voted, setVoted] = useState(false);
+
+  const postHandler = () => {
+    setPosted(true);
+  }
+
+  const voteHandler = () => {
+    setVoted(true);
+  }
 
   return (
     <ChakraBaseProvider>
@@ -52,6 +62,8 @@ function App() {
         <Navbar
           currentAccount={currentAccount}
           contractInstance={contractInstance}
+          posted={posted}
+          voted={voted}
         />
         <Routes>
           <Route
@@ -60,12 +72,13 @@ function App() {
               <Post
                 contractInstance={contractInstance}
                 currentAccount={currentAccount}
+                setIsVoted={voteHandler}
               />
             }
           />
           <Route
             path="/postSomething"
-            element={<Form contractInstance={contractInstance} />}
+            element={<Form contractInstance={contractInstance} setIsPosted={postHandler} />}
           />
           <Route
             path="/yourposts"

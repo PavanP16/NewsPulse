@@ -9,30 +9,36 @@ import {
   Box,
   Text,
   Flex,
-  Icon
+  Icon,
 } from "@chakra-ui/react";
 import { GiToken } from "react-icons/gi";
 import ConnectedAccount from "./ConnectedAccount";
 import { ethers } from "ethers";
 
-const AvatarIcon = ({ currentAccount,contractInstance,newchange}) => {
+const AvatarIcon = ({
+  currentAccount,
+  contractInstance,
+  newchange,
+  posted,
+  voted
+}) => {
   const [balance, setbalan] = useState(null);
 
   const fetchBalance = async () => {
-      try {
-        const balance = await contractInstance.balanceOf(currentAccount);
-        const finalBal = ethers.utils.formatEther(balance);
-        setbalan(finalBal);
-      } catch (error) {
-        console.error("ERROR ", error);
-      }
+    try {
+      const balance = await contractInstance.balanceOf(currentAccount);
+      const finalBal = ethers.utils.formatEther(balance);
+      setbalan(finalBal);
+    } catch (error) {
+      console.error("ERROR ", error);
     }
+  };
 
   useEffect(() => {
     if (contractInstance && currentAccount) {
-   fetchBalance();
+      fetchBalance();
     }
-  }, [contractInstance, currentAccount,newchange]);
+  }, [contractInstance, currentAccount, newchange, posted, voted]);
 
   return (
     <Menu>

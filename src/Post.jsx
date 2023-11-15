@@ -3,7 +3,7 @@ import Vote from "./components/Vote";
 import { toast } from "sonner";
 import { MessageSquare } from "lucide-react";
 
-const Post = ({ currentAccount, contractInstance }) => {
+const Post = ({ currentAccount, contractInstance, setIsVoted }) => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -54,6 +54,7 @@ const Post = ({ currentAccount, contractInstance }) => {
               id={index}
               blogPost={blogs[index]}
               currentAccount={currentAccount}
+              setIsVoted={setIsVoted}
             />
             <div className="w-0 flex-1">
               {loading ? (

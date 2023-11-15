@@ -2,7 +2,7 @@ import { Spinner } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { toast } from "sonner";
 
-const Form = ({ contractInstance }) => {
+const Form = ({ contractInstance, setIsPosted }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -65,6 +65,7 @@ const Form = ({ contractInstance }) => {
         console.log(data);
         setTitle("");
         setContent("");
+        setIsPosted();
       });
     }
   };
