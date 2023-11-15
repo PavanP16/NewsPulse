@@ -51,8 +51,8 @@ const Post = ({ currentAccount, contractInstance, setIsVoted }) => {
           <div className="px-6 py-4 flex justify-between">
             <Vote
               contractInstance={contractInstance}
-              id={index}
-              blogPost={blogs[index]}
+              id={post.blogId}
+              blogPost={blogs[post.blogId]}
               currentAccount={currentAccount}
               setIsVoted={setIsVoted}
             />

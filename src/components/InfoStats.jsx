@@ -10,10 +10,12 @@ const InfoStats = ({ contractInstance, id, currentAccount,changed }) => {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [rating, setRating] = useState(0);
+  console.log(id);
 
   const getStats = async () => {
     try {
       const sc = await contractInstance.getBlog_Single(id);
+      
       setLikes(sc.likesCnt.toNumber());
       setDislikes(sc.dislikesCnt.toNumber());
       setRating(sc.rating);
